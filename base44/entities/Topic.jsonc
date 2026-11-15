@@ -1,0 +1,65 @@
+{
+  "name": "Topic",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "material_id": {
+      "type": "string"
+    },
+    "importance": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "enumColors": [
+        "red",
+        "amber",
+        "gray"
+      ],
+      "default": "medium"
+    },
+    "mastery": {
+      "type": "number",
+      "default": 0
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false,
+      "description": "Topic belonging to a shared demo material"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.is_demo": true
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
