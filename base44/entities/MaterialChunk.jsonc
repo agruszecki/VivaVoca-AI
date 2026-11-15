@@ -1,0 +1,51 @@
+{
+  "name": "MaterialChunk",
+  "type": "object",
+  "properties": {
+    "material_id": {
+      "type": "string"
+    },
+    "topic_name": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "chunk_index": {
+      "type": "number"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indexed notes belonging to a shared demo material"
+    }
+  },
+  "required": [
+    "material_id",
+    "text"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.is_demo": true
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
