@@ -1,0 +1,104 @@
+{
+  "name": "ExamSession",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "enumColors": [
+        "green",
+        "amber",
+        "red"
+      ],
+      "default": "medium"
+    },
+    "topic_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "in_progress",
+        "completed"
+      ],
+      "enumColors": [
+        "gray",
+        "blue",
+        "green"
+      ],
+      "default": "scheduled"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration_minutes": {
+      "type": "number"
+    },
+    "overall_score": {
+      "type": "number",
+      "description": "The real 0-100 score the examiner gave. Left empty when the session produced no score."
+    },
+    "strongest_topic": {
+      "type": "string"
+    },
+    "weakest_topic": {
+      "type": "string"
+    },
+    "key_gap": {
+      "type": "string"
+    },
+    "recommended_review": {
+      "type": "string"
+    },
+    "topic_scores": {
+      "type": "string",
+      "description": "JSON text of [{ topic, score }] exactly as the examiner returned it"
+    },
+    "elevenlabs_conversation_id": {
+      "type": "string"
+    },
+    "results_source": {
+      "type": "string",
+      "enum": [
+        "client_tool",
+        "data_collection"
+      ],
+      "enumColors": [
+        "green",
+        "blue"
+      ],
+      "description": "Where the saved results came from"
+    }
+  },
+  "required": [],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
