@@ -1,0 +1,87 @@
+{
+  "name": "StudyMaterial",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "file_name": {
+      "type": "string"
+    },
+    "file_type": {
+      "type": "string",
+      "enum": [
+        "pdf",
+        "pptx",
+        "docx",
+        "txt",
+        "rtf"
+      ],
+      "enumColors": [
+        "red",
+        "amber",
+        "blue",
+        "gray",
+        "purple"
+      ]
+    },
+    "file_uri": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "analyzed",
+        "analyzing"
+      ],
+      "enumColors": [
+        "green",
+        "yellow"
+      ],
+      "default": "analyzing"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "extracted_text": {
+      "type": "string"
+    },
+    "grounding_note": {
+      "type": "string",
+      "description": "What this source does not cover, so the limits of its topics stay visible"
+    },
+    "is_demo": {
+      "type": "boolean",
+      "default": false,
+      "description": "Shared read-only demo material available to every user"
+    }
+  },
+  "required": [
+    "title",
+    "file_name"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "data.is_demo": true
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
