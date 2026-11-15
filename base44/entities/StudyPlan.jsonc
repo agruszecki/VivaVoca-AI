@@ -1,0 +1,45 @@
+{
+  "name": "StudyPlan",
+  "type": "object",
+  "properties": {
+    "report_id": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "priority_topic": {
+      "type": "string"
+    },
+    "study_time_minutes": {
+      "type": "number",
+      "default": 45
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "focus_topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
